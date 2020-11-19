@@ -1,23 +1,3 @@
-db.createCollection('musics', {
-  autoIndexId: true,
-  validator: {
-    $jsonSchema: {
-      bsonType: 'object',
-      required: ['title', 'artist', 'genre', 'year', 'type'],
-    },
-  },
-});
-
-db.createCollection('users', {
-  autoIndexId: true,
-  validator: {
-    $jsonSchema: {
-      bsonType: 'object',
-      required: ['login', 'password', 'email'],
-    },
-  },
-});
-
 db.getCollection('musics').insertMany([
   {
     title: 'She Wolf',
