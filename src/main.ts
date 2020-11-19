@@ -5,6 +5,7 @@ import { ServerConfig } from './interfaces/server-config.interface';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { SwaggerConfig } from './interfaces/swagger-config.interface';
 import { Logger } from '@nestjs/common';
+import { MusicModule } from './music/music.module';
 
 async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
   const app = await NestFactory.create(AppModule);
@@ -19,11 +20,11 @@ async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
     .build();
 
   // create swagger document
-  const appDocument = SwaggerModule.createDocument(app, options, {
-    include: [AppModule],
+  const MusicDocument = SwaggerModule.createDocument(app, options, {
+    include: [MusicModule],
   });
 
-  SwaggerModule.setup(swagger.path, app, appDocument);
+  SwaggerModule.setup(swagger.path, app, MusicDocument);
 
   await app.listen(config.port, config.host);
   Logger.log(
