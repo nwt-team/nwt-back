@@ -15,6 +15,10 @@ export class MusicController {
   constructor(private readonly _musicService: MusicService) {
   }
 
+  /**
+   * handler to answer GET /music/{id} route
+   * @param handler
+   */
   @ApiParam({
     name: 'id',
     description: 'Unique identifier of the person in the database',
@@ -25,4 +29,13 @@ export class MusicController {
   findOne(@Param() handler: ParamsHandler): Observable<MusicEntity> {
     return this._musicService.findOne(handler.id);
   }
+
+  /**
+   * handler to answer GET /music route
+   */
+  @Get()
+  findAll(): Observable<MusicEntity[] | void> {
+    return this._musicService.findAll();
+  }
+
 }

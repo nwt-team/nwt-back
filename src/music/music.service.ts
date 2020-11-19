@@ -20,4 +20,12 @@ export class MusicService {
         mergeMap( _ => !!_ ? of(new MusicEntity(_)) : throwError(new NotFoundException(`Music with id '${id}' not found`))),
       )
   }
+
+  findAll(): Observable<MusicEntity[] | void> {
+    return this._musicDao.find()
+      .pipe(
+        map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
+      );
+  }
+
 }

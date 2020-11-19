@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Music } from '../schemas/music.schema';
 import { Model, Mongoose, MongooseDocument } from 'mongoose';
-import { from, Observable } from 'rxjs';
+import { from, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -27,5 +27,12 @@ export class MusicDao {
     return from(this._musicModel.findById(id)).pipe(
       map((doc: MongooseDocument) => (!!doc ? doc.toJSON() : undefined)),
     );
+  }
+
+  find(): Observable<Music[] | void> {
+    return from(this._musicModel.find({}))
+      .pipe(
+        map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
+      );
   }
 }
