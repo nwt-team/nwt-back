@@ -48,6 +48,7 @@ export class MusicService {
             ) :
             throwError(new UnprocessableEntityException(e.message)),
         ),
+        map(_ => new MusicEntity(_))
       );
   }
 

@@ -35,3 +35,10 @@ db.getCollection('users').insertMany([
 ]);
 
 //Ajouter le script de création de la bd playlist
+db.getCollection('playlists').insertOne(
+  {
+    "title":"TestPlaylist",
+    "musics":[
+    ]
+  }
+);

@@ -1,6 +1,5 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 
 @Exclude()
 export class MusicEntity {

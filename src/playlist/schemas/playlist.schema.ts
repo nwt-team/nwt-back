@@ -1,18 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Music } from './music.schema';
-import mongoose from "mongoose";
+import { Document } from 'mongoose';
 
 @Schema({ toJSON: { virtuals: true }, versionKey: false })
-export class Playlist {
-  @Prop({
-    type: mongoose.Types.ObjectId,
-    required: true,
-    trim: true,
-  })
-  _id: String;
-
+export class Playlist extends Document{
   @Prop({
     type: String,
+    required: false,
+    trim: true,
+  })
+  title: string;
+
+  @Prop({
+    type: Array,
     required: false,
     trim: true,
   })
