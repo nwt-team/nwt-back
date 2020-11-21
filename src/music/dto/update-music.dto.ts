@@ -1,25 +1,26 @@
 import { IsArray, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 
-export class CreateMusicDto {
-  @IsString()
-  @IsNotEmpty()
-  title: string;
+export class UpdateMusicDto {
 
   @IsString()
   @IsNotEmpty()
-  artist: string;
+  title?: string;
 
   @IsString()
   @IsNotEmpty()
-  genre: string;
+  artist?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  genre?: string;
 
   @IsNumber()
   @IsNotEmpty()
-  year: number;
+  year?: number;
 
   @IsString()
   @IsNotEmpty()
-  type: string;
+  type?: string;
 
   @IsString()
   @IsOptional()

@@ -17,14 +17,14 @@ export class Music extends Document {
     required: true,
     trim: true,
   })
-  artists: string[];
+  artist: string;
 
   @Prop({
     type: Array,
     required: true,
     trim: true,
   })
-  genres: string[];
+  genre: string;
 
   @Prop({
     type: Number,

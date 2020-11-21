@@ -4,6 +4,7 @@ import { from, Observable, of, throwError } from 'rxjs';
 import { MusicEntity } from './entities/music.entity';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CreateMusicDto } from './dto/create-music.dto';
+import { UpdateMusicDto } from './dto/update-music.dto';
 
 @Injectable()
 export class MusicService {
@@ -39,6 +40,24 @@ export class MusicService {
               new ConflictException(`Music already exist`),
             ) :
             throwError(new UnprocessableEntityException(e.message)),
+        ),
+      );
+  }
+
+  update(id: string, music: UpdateMusicDto): Observable<MusicEntity | void> {
+    return this._musicDao.findByIdAndUpdate(id, music)
+      .pipe(
+        catchError(e =>
+          e.code === 11000 ?
+            throwError(
+              new ConflictException(`Music with already exists`),
+            ) :
+            throwError(new UnprocessableEntityException(e.message)),
+        ),
+        mergeMap(_ =>
+          !!_ ?
+            of(new MusicEntity(_)) :
+            throwError(new NotFoundException(`Music not found exception`)),
         ),
       );
   }

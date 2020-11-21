@@ -4,14 +4,6 @@ import { Types } from 'mongoose';
 
 @Exclude()
 export class MusicEntity {
-  @ApiProperty({
-    name: '_id',
-    description: 'Id in the database',
-    example: '12348',
-  })
-  @Expose()
-  @Type(() => String)
-  _id: string;
 
   @ApiProperty({
     name: 'title',
@@ -28,8 +20,8 @@ export class MusicEntity {
     example: ['Led Zeppelin'],
   })
   @Expose()
-  @Type(() => Array)
-  artists: string[];
+  @Type(() => String)
+  artist: string;
 
   @ApiProperty({
     name: 'genres',
@@ -38,7 +30,7 @@ export class MusicEntity {
   })
   @Expose()
   @Type(() => String)
-  genres: string[];
+  genre: string;
 
   @ApiProperty({
     name: 'year',
@@ -47,7 +39,7 @@ export class MusicEntity {
   })
   @Expose()
   @Type(() => Number)
-  year: number;
+  year: Number;
 
   @ApiProperty({
     name: 'type',

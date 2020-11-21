@@ -1,8 +1,10 @@
+db.getCollection('musics').createIndex({ title: 1, artists: 1 , genres: 1, year: 1, type: 1}, { unique: true });
+
 db.getCollection('musics').insertMany([
   {
     title: 'She Wolf',
-    artists: ['David Guetta'],
-    genres: ['Electro'],
+    artists: 'David Guetta',
+    genres: 'Electro',
     year: 2011,
     type: 'Single',
     cover:
@@ -10,8 +12,8 @@ db.getCollection('musics').insertMany([
   },
   {
     title: 'Whole Lotta Love',
-    artists: ['Led Zeppelin'],
-    genres: ['Metal classique'],
+    artists: 'Led Zeppelin',
+    genres: 'Metal classique',
     year: 1969,
     type: 'Single',
     cover:

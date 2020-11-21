@@ -5,6 +5,7 @@ import { Model, Mongoose, MongooseDocument } from 'mongoose';
 import { from, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CreateMusicDto } from '../dto/create-music.dto';
+import { UpdateMusicDto } from '../dto/update-music.dto';
 
 @Injectable()
 export class MusicDao {
@@ -46,6 +47,13 @@ export class MusicDao {
     return from(new this._musicModel(music).save())
       .pipe(
         map( (doc: MongooseDocument) => doc.toJSON()),
+      );
+  }
+
+  findByIdAndUpdate(id: string, music: UpdateMusicDto): Observable<Music | void> {
+    return from(this._musicModel.findByIdAndUpdate(id, music, { new: true, runValidators: true}))
+      .pipe(
+        map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
       );
   }
 }
