@@ -4,10 +4,6 @@ import { Exclude, Expose, Type } from 'class-transformer';
 export class UserEntity {
   @Expose()
   @Type(() => String)
-  _id: string;
-
-  @Expose()
-  @Type(() => String)
   avatar: string;
 
   @Expose()
@@ -35,7 +31,7 @@ export class UserEntity {
   email: string;
 
   @Expose()
-  @Type(() => Array)
+  @Type(() => String)
   playlists: string[];
 
   constructor(partial: Partial<UserEntity>) {

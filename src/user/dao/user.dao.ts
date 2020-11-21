@@ -13,7 +13,7 @@ export class UserDao {
   find(): Observable<User[] | void> {
     return from(this._userModel.find({}))
       .pipe(
-        map((docs: MongooseDocument[]) => (!!docs && docs.length) ? docs.map(_ => _.toJSON()) : undefined),
+        map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined),
       );
   }
 
