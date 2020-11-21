@@ -44,6 +44,18 @@ export class MusicDao {
   }
 
   /**
+   * Find music by title
+   * @param title
+   * @return Observable<Music[] | void>
+   */
+  findByTitle(title: string): Observable<Music[] | void> {
+    return from(this._musicModel.find({title: title}))
+      .pipe(
+        map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
+      );
+  }
+
+  /**
    * Create music and return it
    * @param music
    * @return {Observable<Music[]>}

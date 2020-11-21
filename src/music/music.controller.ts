@@ -40,6 +40,11 @@ export class MusicController {
     return this._musicService.findAll();
   }
 
+  @Get('/byTitle/:title')
+  findByTitle(@Param() params: ParamsHandler): Observable<MusicEntity[] | void> {
+    return this._musicService.findByTitle(params.title);
+  }
+
   @Post()
   create(@Body() music: CreateMusicDto): Observable<MusicEntity> {
     return this._musicService.create(music);

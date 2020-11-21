@@ -27,7 +27,14 @@ export class MusicService {
     return this._musicDao.find()
       .pipe(
         map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
-      );
+      )
+  }
+
+  findByTitle(title: string): Observable<MusicEntity[] | void> {
+    return this._musicDao.findByTitle(title)
+      .pipe(
+        map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
+      )
   }
 
   create(music: CreateMusicDto): Observable<MusicEntity> {
