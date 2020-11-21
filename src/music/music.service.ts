@@ -44,7 +44,12 @@ export class MusicService {
       );
   }
 
-  update(id: string, music: UpdateMusicDto): Observable<MusicEntity | void> {
+  /**
+   * Update music if the change doesn't already exist.
+   * @param id
+   * @param music
+   */
+  update(id: string, music: UpdateMusicDto): Observable<MusicEntity> {
     return this._musicDao.findByIdAndUpdate(id, music)
       .pipe(
         catchError(e =>

@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { MusicService } from './music.service';
 import { MusicEntity } from './entities/music.entity';
 import { ParamsHandler } from './validators/params-handler';
 import { ApiParam } from '@nestjs/swagger';
 import { CreateMusicDto } from './dto/create-music.dto';
+import { UpdateMusicDto } from './dto/update-music.dto';
 
 @Controller('music')
 export class MusicController {
@@ -42,6 +43,11 @@ export class MusicController {
   @Post()
   create(@Body() music: CreateMusicDto): Observable<MusicEntity> {
     return this._musicService.create(music);
+  }
+
+  @Put(':id')
+  update(@Param() params: ParamsHandler, @Body() music: UpdateMusicDto): Observable<MusicEntity> {
+    return this._musicService.update(params.id, music);
   }
 
 
