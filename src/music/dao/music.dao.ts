@@ -43,6 +43,11 @@ export class MusicDao {
       );
   }
 
+  /**
+   * Create music and return it
+   * @param music
+   * @return {Observable<Music[]>}
+   */
   save(music: CreateMusicDto): Observable<Music> {
     return from(new this._musicModel(music).save())
       .pipe(
@@ -50,10 +55,28 @@ export class MusicDao {
       );
   }
 
+  /**
+   * Update music and return it
+   * @param id
+   * @param music
+   * @return {Observable<Music[] | void>}
+   */
   findByIdAndUpdate(id: string, music: UpdateMusicDto): Observable<Music | void> {
     return from(this._musicModel.findByIdAndUpdate(id, music, { new: true, runValidators: true}))
       .pipe(
         map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
+      );
+  }
+
+  /**
+   * Remove object if Id is found in DB and return it
+   * @param id
+   * @return {Observable<Music[] | void>}
+   */
+  findByIdAndRemove(id: string): Observable<Music | void> {
+    return from(this._musicModel.findByIdAndRemove(id))
+      .pipe(
+        map((doc:MongooseDocument) => !!doc ? doc.toJSON() : undefined),
       );
   }
 }

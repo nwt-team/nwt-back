@@ -67,6 +67,18 @@ export class MusicService {
       );
   }
 
+  remove(id: string): Observable<void> {
+    return this._musicDao.findByIdAndRemove(id)
+      .pipe(
+        catchError(e => throwError(new UnprocessableEntityException(e.message))),
+        mergeMap(_ =>
+          !!_ ?
+            of(undefined) :
+            throwError(new NotFoundException(`Music with id '${id}' not found`)),
+        ),
+      );
+  }
+
   /**
    * Verify if the music have a cover
    * @param music

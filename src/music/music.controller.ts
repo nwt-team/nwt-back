@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { MusicService } from './music.service';
 import { MusicEntity } from './entities/music.entity';
@@ -48,6 +48,11 @@ export class MusicController {
   @Put(':id')
   update(@Param() params: ParamsHandler, @Body() music: UpdateMusicDto): Observable<MusicEntity> {
     return this._musicService.update(params.id, music);
+  }
+
+  @Delete(':id')
+  delete(@Param() params: ParamsHandler): Observable<void> {
+    return this._musicService.remove(params.id);
   }
 
 
