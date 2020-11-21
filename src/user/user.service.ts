@@ -26,4 +26,6 @@ export class UserService {
         }),
       );
   }
+
+  //https://randomuser.me/api/portraits/lego/7.jpg
 }

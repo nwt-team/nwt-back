@@ -1,8 +1,8 @@
 db.getCollection('musics').insertMany([
   {
     title: 'She Wolf',
-    artist: 'David Guetta',
-    genre: 'Electro',
+    artists: ['David Guetta'],
+    genres: ['Electro'],
     year: 2011,
     type: 'Single',
     cover:
@@ -10,8 +10,8 @@ db.getCollection('musics').insertMany([
   },
   {
     title: 'Whole Lotta Love',
-    artist: 'Led Zeppelin',
-    genre: 'Metal classique',
+    artists: ['Led Zeppelin'],
+    genres: ['Metal classique'],
     year: 1969,
     type: 'Single',
     cover:
@@ -21,7 +21,7 @@ db.getCollection('musics').insertMany([
 
 db.getCollection('users').insertMany([
   {
-    avatar: 'https://randomuser.me/portraits/women/59.jpg',
+    avatar: 'https://randomuser.me/portraits/lego/7.jpg',
     firstname: 'John',
     lastname: 'Doe',
     login: 'testlog',

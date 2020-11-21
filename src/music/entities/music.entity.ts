@@ -23,22 +23,22 @@ export class MusicEntity {
   title: string;
 
   @ApiProperty({
-    name: 'artist',
+    name: 'artists',
     description: 'Artist who made the music',
-    example: 'Led Zeppelin',
+    example: ['Led Zeppelin'],
   })
   @Expose()
-  @Type(() => String)
-  artist: string;
+  @Type(() => Array)
+  artists: string[];
 
   @ApiProperty({
-    name: 'genre',
+    name: 'genres',
     description: 'The genre of the music',
-    example: 'Metal classique',
+    example: ['Metal classique'],
   })
   @Expose()
   @Type(() => String)
-  genre: string;
+  genres: string[];
 
   @ApiProperty({
     name: 'year',

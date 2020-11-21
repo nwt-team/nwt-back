@@ -4,6 +4,7 @@ import { Music } from '../schemas/music.schema';
 import { Model, Mongoose, MongooseDocument } from 'mongoose';
 import { from, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CreateMusicDto } from '../dto/create-music.dto';
 
 @Injectable()
 export class MusicDao {
@@ -17,7 +18,7 @@ export class MusicDao {
   ) {}
 
   /**
-   * Returns one music of the list matching the id in paramter
+   * Returns one music of the list matching the id in parameter
    *
    * @param id
    *
@@ -29,10 +30,22 @@ export class MusicDao {
     );
   }
 
+  /**
+   *  Returns a list of Music
+   *
+   * @return {Observable<Music[] | void>}
+   */
   find(): Observable<Music[] | void> {
     return from(this._musicModel.find({}))
       .pipe(
         map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
+      );
+  }
+
+  save(music: CreateMusicDto): Observable<Music> {
+    return from(new this._musicModel(music).save())
+      .pipe(
+        map( (doc: MongooseDocument) => doc.toJSON()),
       );
   }
 }

@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { MusicDao } from './dao/music.dao';
-import { Observable, of, throwError } from 'rxjs';
+import { from, Observable, of, throwError } from 'rxjs';
 import { MusicEntity } from './entities/music.entity';
 import { catchError, map, mergeMap } from 'rxjs/operators';
+import { CreateMusicDto } from './dto/create-music.dto';
 
 @Injectable()
 export class MusicService {
@@ -25,6 +26,38 @@ export class MusicService {
     return this._musicDao.find()
       .pipe(
         map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
+      );
+  }
+
+  create(music: CreateMusicDto): Observable<MusicEntity> {
+    return this._addMusic(music)
+      .pipe(
+        mergeMap( _ => this._musicDao.save(_)),
+        catchError(e =>
+          e.code === 11000 ?
+            throwError(
+              new ConflictException(`Music already exist`),
+            ) :
+            throwError(new UnprocessableEntityException(e.message)),
+        ),
+      );
+  }
+
+  /**
+   * Verify if the music have a cover
+   * @param music
+   * @private
+   */
+  private _addMusic(music: CreateMusicDto): Observable<CreateMusicDto>
+  {
+    return of(music)
+      .pipe(
+        map(_ =>
+          !!_.cover ? _ :
+            Object.assign(_, {
+              cover: 'ressources/default_album_art.png'
+            })
+        ),
       );
   }
 
