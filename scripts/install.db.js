@@ -28,11 +28,8 @@ db.getCollection('users').insertMany([
     password: '',
     birthDate: ISODate('1974-01-01T23:00:00.000Z'),
     email: 'john.doe@test.com',
-    lists: [1],
+    playlists: [],
   },
 ]);
 
-db.getCollection('lists').insertOne({
-  _id: 1,
-  musics: [12347, 12348],
-});
+//Ajouter le script de création de la bd playlist

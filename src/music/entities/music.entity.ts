@@ -1,16 +1,17 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 
 @Exclude()
 export class MusicEntity {
   @ApiProperty({
-    name: 'id',
+    name: '_id',
     description: 'Id in the database',
     example: '12348',
   })
   @Expose()
   @Type(() => String)
-  id: string;
+  _id: string;
 
   @ApiProperty({
     name: 'title',

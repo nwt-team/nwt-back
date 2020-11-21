@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema({ toJSON: { virtuals: true }, versionKey: false })
 export class Music extends Document {
+
   @Prop({
     type: String,
     required: true,
