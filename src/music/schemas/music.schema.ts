@@ -1,7 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema({ toJSON: { virtuals: true }, versionKey: false })
+@Schema({
+  toJSON: {
+    virtuals: true,
+    transform(doc, ret) {
+      ret.id = ret._id;
+      delete ret._id;
+    }
+  },
+  versionKey: false,
+} )
 export class Music extends Document {
 
   @Prop({

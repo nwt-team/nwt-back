@@ -1,5 +1,3 @@
-db.getCollection('musics').createIndex({ title: 1, artists: 1 , genres: 1, year: 1, type: 1}, { unique: true });
-
 db.getCollection('musics').insertMany([
   {
     title: 'She Wolf',
@@ -20,6 +18,7 @@ db.getCollection('musics').insertMany([
       'https://images-na.ssl-images-amazon.com/images/I/619CcXRfEIL._SL1200_.jpg',
   },
 ]);
+db.getCollection('musics').createIndex({ title: 1, artists: 1 , genres: 1, year: 1, type: 1}, { unique: true });
 
 db.getCollection('users').insertMany([
   {
@@ -34,7 +33,8 @@ db.getCollection('users').insertMany([
   },
 ]);
 
-//Ajouter le script de création de la bd playlist
+db.getCollection('users').createIndex({ login: 1}, { unique: true });
+
 db.getCollection('playlists').insertOne(
   {
     "title":"TestPlaylist",
