@@ -1,6 +1,6 @@
 import {
   IsArray,
-  IsDate, IsEmail, IsHash,
+  IsDate, IsDateString, IsEmail, IsHash,
   IsMongoId,
   IsOptional,
   IsString,
@@ -8,8 +8,6 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
-
-
 
   @IsUrl()
   @IsOptional()
@@ -29,7 +27,7 @@ export class CreateUserDto {
   @Matches(/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
   password: string
 
-  @IsDate()
+  @IsDateString()
   @IsOptional()
   birthDate?: string
 

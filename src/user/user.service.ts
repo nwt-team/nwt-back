@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { Logger, ConflictException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { UserEntity } from './entities/user.entity';
@@ -109,14 +109,36 @@ export class UserService {
 
 
   private _createUser(user: CreateUserDto): Observable<CreateUserDto> {
+    const bcrypt = require('bcrypt');
+    const saltRounds = 10;
     return of(user)
-      .pipe(
-        map(_ => (!!_.avatar && length > 0) ? _ :
+    .pipe(
+      map(_ => (!!_.avatar && _.avatar.length > 0) ? _ :
+        Object.assign(_, {
+          avatar: 'https://randomuser.me/api/portraits/lego/7.jpg',
+        })
+      ),
+    )
+    .pipe(
+      map(_ => {
+        let password = bcrypt.hashSync(_.password, saltRounds);
+        Logger.log('Password hash : '+password)
+        Object.assign(_, {
+          password: password
+        })
+        return _
+      })
+    )
+    .pipe(
+      map(_ => {
+          let date = this._parseDate(_.birthDate)
           Object.assign(_, {
-            avatar: 'https://randomuser.me/api/portraits/lego/7.jpg',
+            birthDate: date
           })
-        )
-      );
+          return _
+        }
+      ),
+    )
   }
 
 

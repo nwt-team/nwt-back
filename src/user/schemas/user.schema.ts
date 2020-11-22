@@ -49,7 +49,7 @@ export class User extends Document{
   password: string;
 
   @Prop({
-    type: String,
+    type: Date,
     required: false,
     trim: true,
   })

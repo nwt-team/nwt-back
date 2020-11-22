@@ -13,7 +13,7 @@ import { PlaylistModule } from './playlist/playlist.module';
     ),
     MusicModule,
     UserModule,
-    PlaylistModule,
+    PlaylistModule
   ],
 })
 export class AppModule {}

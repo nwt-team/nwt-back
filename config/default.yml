@@ -6,7 +6,7 @@ server:
     - "http://127.0.0.1:4200"
     - "http://localhost:4200"
 swagger:
-  title: MusicOrganizer API NestJS
+  title: MusicOrganizer API
   description: A NestJS Music API for all
   version: 1.0
   tag: music

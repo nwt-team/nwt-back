@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ParamsHandler } from '../validators/params-handler';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
@@ -17,7 +18,7 @@ export class UserController {
 
   /**
    * handler to answer GET /user/id/{id} route
-   * @param handler
+   * @param req
    */
   @Get(':id')
   findOneById(@Param() handler: ParamsHandler): Observable<UserEntity> {
