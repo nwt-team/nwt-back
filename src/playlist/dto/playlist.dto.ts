@@ -1,4 +1,4 @@
-import { IsArray, IsHexadecimal, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsHexadecimal, IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
 
 export class PlaylistDto {
@@ -9,7 +9,7 @@ export class PlaylistDto {
 
   @IsArray()
   @IsString({each:true})
-  @IsHexadecimal({each:true})
+  @IsMongoId({each:true})
   @IsNotEmpty()
   musics: string[];
 }

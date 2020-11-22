@@ -63,7 +63,7 @@ export class MusicService {
         catchError(e =>
           e.code === 11000 ?
             throwError(
-              new ConflictException(`Music with already exists`),
+              new ConflictException(`Music already exists`),
             ) :
             throwError(new UnprocessableEntityException(e.message)),
         ),

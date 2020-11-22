@@ -1,8 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
 import { UserParamsHandler } from './validators/params-handler';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -15,12 +16,20 @@ export class UserController {
   }
 
   /**
-   * handler to answer GET /music/{id} route
+   * handler to answer GET /user/id/{id} route
    * @param handler
    */
   @Get(':id')
-  findOne(@Param() handler: UserParamsHandler): Observable<UserEntity> {
+  findOneById(@Param() handler: UserParamsHandler): Observable<UserEntity> {
     return this._userService.findOne(handler.id);
+  }
+  /**
+   * handler to answer GET /user/login/{login} route
+   * @param handler
+   */
+  @Get('/byLogin/:login')
+  findOneByLogin(@Param() handler: UserParamsHandler): Observable<UserEntity> {
+    return this._userService.findOneByLogin(handler.login);
   }
 
   /**
@@ -29,6 +38,57 @@ export class UserController {
   @Get()
   findAll(): Observable<UserEntity[] | void> {
     return this._userService.findAll();
+  }
+
+  /**
+   * handler to answer POST /user route
+   */
+  @Post()
+  create(@Body() user: CreateUserDto): Observable<UserEntity>
+  {
+    return this._userService.create(user);
+  }
+
+  /**
+   * handler to answer PUT /user route
+   * @param handler
+   * @param user
+   */
+  @Put(':id')
+  updateUsingId(@Param() handler: UserParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
+  {
+    return this._userService.updateUsingId(handler.id, user);
+  }
+
+  /**
+   * handler to answer PUT /user/byLogin route
+   * @param handler
+   * @param user
+   */
+  @Put('/byLogin/:login')
+  updateUsingLogin(@Param() handler: UserParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
+  {
+    return this._userService.updateUsingLogin(handler.login, user);
+  }
+
+  /**
+   * handler to answer DELETE /user route
+   * @param handler
+   */
+  @Delete(':id')
+  deleteUsingId(@Param() handler: UserParamsHandler): Observable<void>
+  {
+    return this._userService.removeUsingId(handler.id);
+  }
+
+  /**
+   * handler to answer DELETE /user/byLogin/{login} route
+   * @param handler
+   */
+  @Delete('/byLogin/:login')
+  deleteUsingLogin(@Param() handler: UserParamsHandler): Observable<void>
+  {
+    return this._userService.removeUsingLogin(handler.login);
   }
 
 }

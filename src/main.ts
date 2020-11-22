@@ -26,9 +26,9 @@ async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
 
   SwaggerModule.setup(swagger.path, app, MusicDocument);
 
-  await app.listen(config.port, config.host);
+  await app.listen(config.port, config.host,);
   Logger.log(
-    `Application served at http://${config.host}:${config.port}`,
+    `Application served at http://${config.host}:${config.port}/`,
     'bootstrap',
   );
 }

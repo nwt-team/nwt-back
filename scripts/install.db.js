@@ -27,7 +27,7 @@ db.getCollection('users').insertMany([
     lastname: 'Doe',
     login: 'testlog',
     password: '',
-    birthDate: ISODate('1974-01-01T23:00:00.000Z'),
+    birthDate: '1998/10/20',
     email: 'john.doe@test.com',
     playlists: [],
   },
