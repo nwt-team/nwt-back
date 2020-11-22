@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { Observable } from 'rxjs';
 import { MusicService } from './music.service';
 import { MusicEntity } from './entities/music.entity';
-import { ParamsHandler } from './validators/params-handler';
+import { ParamsHandler } from '../validators/params-handler';
 import { ApiParam } from '@nestjs/swagger';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';

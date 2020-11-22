@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { Observable } from 'rxjs';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
-import { UserParamsHandler } from './validators/params-handler';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ParamsHandler } from '../validators/params-handler';
 
 @Controller('user')
 export class UserController {
@@ -20,7 +20,7 @@ export class UserController {
    * @param handler
    */
   @Get(':id')
-  findOneById(@Param() handler: UserParamsHandler): Observable<UserEntity> {
+  findOneById(@Param() handler: ParamsHandler): Observable<UserEntity> {
     return this._userService.findOne(handler.id);
   }
   /**
@@ -28,7 +28,7 @@ export class UserController {
    * @param handler
    */
   @Get('/byLogin/:login')
-  findOneByLogin(@Param() handler: UserParamsHandler): Observable<UserEntity> {
+  findOneByLogin(@Param() handler: ParamsHandler): Observable<UserEntity> {
     return this._userService.findOneByLogin(handler.login);
   }
 
@@ -55,7 +55,7 @@ export class UserController {
    * @param user
    */
   @Put(':id')
-  updateUsingId(@Param() handler: UserParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
+  updateUsingId(@Param() handler: ParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
   {
     return this._userService.updateUsingId(handler.id, user);
   }
@@ -66,7 +66,7 @@ export class UserController {
    * @param user
    */
   @Put('/byLogin/:login')
-  updateUsingLogin(@Param() handler: UserParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
+  updateUsingLogin(@Param() handler: ParamsHandler, @Body() user: CreateUserDto): Observable<UserEntity | void>
   {
     return this._userService.updateUsingLogin(handler.login, user);
   }
@@ -76,7 +76,7 @@ export class UserController {
    * @param handler
    */
   @Delete(':id')
-  deleteUsingId(@Param() handler: UserParamsHandler): Observable<void>
+  deleteUsingId(@Param() handler: ParamsHandler): Observable<void>
   {
     return this._userService.removeUsingId(handler.id);
   }
@@ -86,7 +86,7 @@ export class UserController {
    * @param handler
    */
   @Delete('/byLogin/:login')
-  deleteUsingLogin(@Param() handler: UserParamsHandler): Observable<void>
+  deleteUsingLogin(@Param() handler: ParamsHandler): Observable<void>
   {
     return this._userService.removeUsingLogin(handler.login);
   }

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiParam } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
-import { ParamsHandler } from './validators/params-handler';
+import { ParamsHandler } from '../validators/params-handler';
 import { PlaylistEntity } from './entities/playlist.entity';
 import { PlaylistDto } from './dto/playlist.dto';
 import { PlaylistService } from './playlist.service';
