@@ -37,6 +37,13 @@ export class MusicService {
       )
   }
 
+  findByAlbum(album: string): Observable<MusicEntity[] | void> {
+    return this._musicDao.findByAlbum(album)
+      .pipe(
+        map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
+      )
+  }
+
   create(music: CreateMusicDto): Observable<MusicEntity> {
     return this._addMusic(music)
       .pipe(
@@ -96,12 +103,14 @@ export class MusicService {
   {
     return of(music)
       .pipe(
-        map(_ =>
-          !!_.cover ? _ :
+        map(_ => {
+          if (!_.cover) {
             Object.assign(_, {
               cover: 'ressources/default_album_art.png'
             })
-        ),
+          }
+          return _
+        }),
       );
   }
 

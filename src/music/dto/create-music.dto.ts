@@ -56,4 +56,14 @@ export class CreateMusicDto {
   @IsString()
   @IsOptional()
   cover?: string;
+
+  @ApiPropertyOptional({
+    name: 'album',
+    description: 'The name of the album for this single',
+    example:
+      'Led Zeppelin II',
+  })
+  @IsString()
+  @IsOptional()
+  album?: string;
 }

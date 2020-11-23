@@ -60,6 +60,16 @@ export class MusicEntity {
   @Type(() => String)
   cover: string;
 
+  @ApiPropertyOptional({
+    name: 'album',
+    description: 'The name of the album for this single',
+    example:
+      'Led Zeppelin II',
+  })
+  @Expose()
+  @Type(() => String)
+  album: string;
+
   /**
    * Constructor
    * @param partial data to insert in an object instance

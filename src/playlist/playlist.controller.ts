@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiNoContentResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { ParamsHandler } from '../validators/params-handler';
 import { PlaylistEntity } from './entities/playlist.entity';
 import { PlaylistDto } from './dto/playlist.dto';
 import { PlaylistService } from './playlist.service';
+import { MusicEntity } from '../music/entities/music.entity';
 
 @ApiTags('playlist')
 @Controller('playlist')
@@ -23,6 +24,8 @@ export class PlaylistController {
     type: String,
     allowEmptyValue: false,
   })
+  @ApiOkResponse({ description: 'Returns one playlist', type: PlaylistEntity })
+  @ApiNoContentResponse({ description: 'No playlist with this id exists in database' })
   @Get(':id')
   findOne(@Param() handler: ParamsHandler): Observable<PlaylistEntity> {
     return this._playlistService.findOne(handler.id);

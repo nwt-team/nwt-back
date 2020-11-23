@@ -12,4 +12,8 @@ export class ParamsHandler {
   @IsNotEmpty()
   @IsString()
   login: string;
+
+  @IsNotEmpty()
+  @IsString()
+  album: string;
 }

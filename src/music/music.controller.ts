@@ -53,6 +53,13 @@ export class MusicController {
     return this._musicService.findAll();
   }
 
+  @ApiOkResponse({ description: 'Returns a list of musics', type: MusicEntity })
+  @ApiNoContentResponse({ description: 'No music exists in database' })
+  @Get('/byAlbum/:album')
+  findByAlbum(@Param() handler: ParamsHandler): Observable<MusicEntity[] | void> {
+    return this._musicService.findByAlbum(handler.album);
+  }
+
   @ApiParam({
     name: 'title',
     description: 'Title of the music in the database',

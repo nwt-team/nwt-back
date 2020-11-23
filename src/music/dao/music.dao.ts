@@ -55,6 +55,14 @@ export class MusicDao {
       );
   }
 
+
+  findByAlbum(album: string): Observable<Music[] | void> {
+    return from(this._musicModel.find({album: album}))
+      .pipe(
+        map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
+      )
+  }
+
   /**
    * Create music and return it
    * @param music

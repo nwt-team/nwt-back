@@ -50,6 +50,12 @@ export class Music extends Document {
 
   @Prop({
     type: String,
+    trim: true,
+  })
+  album: string;
+
+  @Prop({
+    type: String,
   })
   cover: string;
 }
