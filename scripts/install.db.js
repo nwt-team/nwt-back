@@ -1,3 +1,4 @@
+
 db.getCollection('musics').insertMany([
   {
     title: 'She Wolf',

@@ -1,3 +1,5 @@
+# MusicOrganizer
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
@@ -26,15 +28,26 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Back-end du projet [MusicOrganizer](https://github.com/nwt-team/nwt-front) utilisant [Nest](https://github.com/nestjs/nest).
 
 ## Installation
+
+### Base de données
+
+Le server fonctionne avec une base de données MongoDB.
+Le fichier de configuration de la bd se trouve dans ```config/default.yml```
+
+Vous devez créer une base de données "MusicOrganizer" ou en créer une avec le nom de votre choix et changer le chemin dans le fichier ```default.yaml```
+
+Les commandes pour initialiser la base de données se trouvent dans le fichier ```install.db.js``` dans le dossier ```scripts```.
+
+### Installation serveur
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Lancer l'application
 
 ```bash
 # development
@@ -46,6 +59,9 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+Le serveur se lance part défaut sur l'adresse ```http://localhost:3000/```.
+Vous pouvez changer cela dans le fichier de configuration ```default.yml```
 
 ## Test
 
@@ -60,11 +76,15 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Documentation
+
+Une fois l'application démarré, vous trouverez la documentation de l'API à l'adresse ```http://localhost:3000/documentation```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## Contact
 
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
