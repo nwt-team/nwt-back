@@ -7,16 +7,17 @@ export class MusicEntity {
   @ApiProperty({
     name: 'title',
     description: 'Title of the music',
-    example: 'Whole lotta love ',
+    example: 'Whole lotta love',
   })
   @Expose()
   @Type(() => String)
   title: string;
 
+
   @ApiProperty({
     name: 'artists',
     description: 'Artist who made the music',
-    example: ['Led Zeppelin'],
+    example: 'Led Zeppelin',
   })
   @Expose()
   @Type(() => String)
@@ -25,7 +26,7 @@ export class MusicEntity {
   @ApiProperty({
     name: 'genres',
     description: 'The genre of the music',
-    example: ['Metal classique'],
+    example: 'Metal classique',
   })
   @Expose()
   @Type(() => String)
@@ -33,8 +34,8 @@ export class MusicEntity {
 
   @ApiProperty({
     name: 'year',
-    description: 'Yaer of creation',
-    example: '1969',
+    description: 'Year of creation',
+    example: 1969,
   })
   @Expose()
   @Type(() => Number)

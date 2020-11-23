@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiParam } from '@nestjs/swagger';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { ParamsHandler } from '../validators/params-handler';
 import { PlaylistEntity } from './entities/playlist.entity';
 import { PlaylistDto } from './dto/playlist.dto';
 import { PlaylistService } from './playlist.service';
 
+@ApiTags('playlist')
 @Controller('playlist')
 export class PlaylistController {
 
@@ -35,6 +36,12 @@ export class PlaylistController {
     return this._playlistService.findAll();
   }
 
+  @ApiParam({
+    name: 'id',
+    description: 'Unique identifier of the person in the database',
+    type: String,
+    allowEmptyValue: false,
+  })
   @Post()
   create(@Body() playlist: PlaylistDto): Observable<PlaylistEntity> {
     return this._playlistService.create(playlist);

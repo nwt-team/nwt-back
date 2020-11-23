@@ -11,16 +11,15 @@ async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
   const app = await NestFactory.create(AppModule);
 
   //Create documentation
-  const options = new DocumentBuilder()
+  const musicOptions = new DocumentBuilder()
     .setTitle(swagger.title)
-    .addServer(swagger.path)
     .setDescription(swagger.description)
     .setVersion(swagger.version)
-    .addTag(swagger.tag)
+    .addTag(swagger.musicTag)
     .build();
 
   // create swagger document
-  const MusicDocument = SwaggerModule.createDocument(app, options, {
+  const MusicDocument = SwaggerModule.createDocument(app, musicOptions, {
     include: [MusicModule],
   });
 

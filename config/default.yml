@@ -9,7 +9,9 @@ swagger:
   title: MusicOrganizer API
   description: A NestJS Music API for all
   version: 1.0
-  tag: music
+  musicTag: music
+  userTag: user
+  playlistTag: playlist
   path: documentation
 mongodb:
   uri: mongodb://0.0.0.0:27017/MusicOrganizer
