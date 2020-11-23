@@ -9,22 +9,21 @@ export class AuthService {
 
   constructor(private readonly userService: UserService) {}
 
-  validateUser(login: string, pass: string): Observable<UserEntity> {
+  async validateUser(login: string, pass: string): Promise<any> {
     const bcrypt = require('bcrypt');
     return this.userService.findOneByLogin(login)
       .pipe(
-        map(_ => {
-            if (!!_) {
-              let result = bcrypt.compareSync(pass, _.password);
-              if (result) {
-                Object.assign(_, {
-                  password: ""
+        map(user => {
+           return  bcrypt.compare(pass, user.password).then(function(result) {
+              if (result == true){
+                Object.assign(user,{
+                  password:""
                 })
-                return _
+                return user;
               } else {
-                return undefined
+                return undefined;
               }
-            }
+            });
           }
         )
       )

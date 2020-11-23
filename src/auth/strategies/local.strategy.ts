@@ -11,7 +11,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super({usernameField:'login'});
   }
 
-   validate(username: string, password: string): Observable<UserEntity> {
+   async validate(username: string, password: string): Promise<any> {
     const user = this.authService.validateUser(username, password);
     if (!user) {
       throw new UnauthorizedException();
