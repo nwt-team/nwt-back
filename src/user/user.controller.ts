@@ -4,7 +4,6 @@ import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ParamsHandler } from '../validators/params-handler';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {

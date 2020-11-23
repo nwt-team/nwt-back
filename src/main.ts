@@ -13,7 +13,7 @@ async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
   //Create documentation
   const options = new DocumentBuilder()
     .setTitle(swagger.title)
-    .setBasePath(swagger.path)
+    .addServer(swagger.path)
     .setDescription(swagger.description)
     .setVersion(swagger.version)
     .addTag(swagger.tag)

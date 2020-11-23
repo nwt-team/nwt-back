@@ -4,6 +4,7 @@ import { MusicModule } from './music/music.module';
 import * as Config from 'config';
 import { UserModule } from './user/user.module';
 import { PlaylistModule } from './playlist/playlist.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { PlaylistModule } from './playlist/playlist.module';
     ),
     MusicModule,
     UserModule,
-    PlaylistModule
-  ],
+    PlaylistModule,
+    AuthModule
+  ]
 })
 export class AppModule {}

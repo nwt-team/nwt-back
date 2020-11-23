@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
+import { UserEntity } from '../../user/entities/user.entity';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -10,7 +11,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super({usernameField:'login'});
   }
 
-   validate(username: string, password: string): Observable<any> {
+   validate(username: string, password: string): Observable<UserEntity> {
     const user = this.authService.validateUser(username, password);
     if (!user) {
       throw new UnauthorizedException();
