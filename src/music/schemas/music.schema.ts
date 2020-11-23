@@ -56,6 +56,7 @@ export class Music extends Document {
 
   @Prop({
     type: String,
+    lowercase:true,
   })
   cover: string;
 }

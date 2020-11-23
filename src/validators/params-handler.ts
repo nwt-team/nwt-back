@@ -1,4 +1,4 @@
-import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
+import { isLowercase, IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
 export class ParamsHandler {
   @IsMongoId()

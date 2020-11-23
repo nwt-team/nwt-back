@@ -38,6 +38,7 @@ export class MusicService {
   }
 
   findByAlbum(album: string): Observable<MusicEntity[] | void> {
+    album = album.toLowerCase()
     return this._musicDao.findByAlbum(album)
       .pipe(
         map(docs => !!docs ? docs.map( _ => new MusicEntity(_)) : undefined),
@@ -113,5 +114,4 @@ export class MusicService {
         }),
       );
   }
-
 }
