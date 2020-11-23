@@ -107,7 +107,7 @@ export class MusicService {
         map(_ => {
           if (!_.cover) {
             Object.assign(_, {
-              cover: 'ressources/default_album_art.png'
+              cover: 'default_album_art.png'
             })
           }
           return _
