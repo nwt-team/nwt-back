@@ -75,7 +75,7 @@ db.getCollection('users').insertMany([
     avatar: 'https://randomuser.me/portraits/lego/7.jpg',
     firstname: 'John',
     lastname: 'Doe',
-    username: 'testlog',
+    login: 'testlog',
     password: '',
     birthDate: ISODate("1973-03-18T23:00:00.000Z"),
     email: 'john.doe@test.com',
