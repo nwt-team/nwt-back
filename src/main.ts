@@ -9,6 +9,7 @@ import { MusicModule } from './music/music.module';
 
 async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
 
   //Create documentation
   const musicOptions = new DocumentBuilder()

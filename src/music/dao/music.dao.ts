@@ -49,7 +49,7 @@ export class MusicDao {
    * @return Observable<Music[] | void>
    */
   findByTitle(title: string): Observable<Music[] | void> {
-    return from(this._musicModel.find({title: title}))
+    return from(this._musicModel.find({title: { "$regex": title, "$options": "i" }}))
       .pipe(
         map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
       );
@@ -57,7 +57,7 @@ export class MusicDao {
 
 
   findByAlbum(album: string): Observable<Music[] | void> {
-    return from(this._musicModel.find({album: album}))
+    return from(this._musicModel.find({album: { "$regex": album, "$options": "i" }}))
       .pipe(
         map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined ),
       )

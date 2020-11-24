@@ -5,6 +5,7 @@ import { MusicEntity } from './entities/music.entity';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { PlaylistEntity } from '../playlist/entities/playlist.entity';
 
 @Injectable()
 export class MusicService {
@@ -46,17 +47,12 @@ export class MusicService {
   }
 
   create(music: CreateMusicDto): Observable<MusicEntity> {
-    return this._addMusic(music)
+    return this._musicDao.save(music)
       .pipe(
-        mergeMap( _ => this._musicDao.save(_)),
         catchError(e =>
-          e.code === 11000 ?
-            throwError(
-              new ConflictException(`Music already exist`),
-            ) :
-            throwError(new UnprocessableEntityException(e.message)),
+          throwError(new UnprocessableEntityException(e.message)),
         ),
-        map(_ => new MusicEntity(_))
+        map( _ => new MusicEntity(_)),
       );
   }
 
@@ -95,23 +91,4 @@ export class MusicService {
       );
   }
 
-  /**
-   * Verify if the music have a cover
-   * @param music
-   * @private
-   */
-  private _addMusic(music: CreateMusicDto): Observable<CreateMusicDto>
-  {
-    return of(music)
-      .pipe(
-        map(_ => {
-          if (!_.cover) {
-            Object.assign(_, {
-              cover: 'default_album_art.png'
-            })
-          }
-          return _
-        }),
-      );
-  }
 }
