@@ -34,9 +34,24 @@ export class PlaylistController {
   /**
    * handler to answer GET /playlist route
    */
+  @ApiParam({
+    name: 'id',
+    description: 'Unique identifier of the person in the database',
+    type: String,
+    allowEmptyValue: false,
+  })
+  @ApiOkResponse({ description: 'Returns a list of playlist', type: PlaylistEntity })
+  @ApiNoContentResponse({ description: 'No playlists  exists in database' })
   @Get()
   findAll(): Observable<PlaylistEntity[] | void> {
     return this._playlistService.findAll();
+  }
+
+  @ApiOkResponse({ description: 'Returns a list of playlist', type: PlaylistEntity })
+  @ApiNoContentResponse({ description: 'No playlists  exists in database' })
+  @Post()
+  create(@Body() playlist: PlaylistDto): Observable<PlaylistEntity> {
+    return this._playlistService.create(playlist);
   }
 
   @ApiParam({
@@ -45,16 +60,20 @@ export class PlaylistController {
     type: String,
     allowEmptyValue: false,
   })
-  @Post()
-  create(@Body() playlist: PlaylistDto): Observable<PlaylistEntity> {
-    return this._playlistService.create(playlist);
-  }
-
+  @ApiOkResponse({ description: 'Returns a list of playlist', type: PlaylistEntity })
+  @ApiNoContentResponse({ description: 'No playlists  exists in database' })
   @Put(':id')
   update(@Param() params: ParamsHandler, @Body() playlist: PlaylistDto): Observable<PlaylistEntity> {
     return this._playlistService.update(params.id, playlist);
   }
 
+  @ApiParam({
+    name: 'id',
+    description: 'Unique identifier of the person in the database',
+    type: String,
+    allowEmptyValue: false,
+  })
+  @ApiNoContentResponse({ description: 'Deleted successfully' })
   @Delete(':id')
   delete(@Param() params: ParamsHandler): Observable<void> {
     return this._playlistService.remove(params.id);

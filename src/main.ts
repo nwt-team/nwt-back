@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { SwaggerConfig } from './interfaces/swagger-config.interface';
 import { Logger } from '@nestjs/common';
 import { MusicModule } from './music/music.module';
+import { PlaylistModule } from './playlist/playlist.module';
 
 async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
   const app = await NestFactory.create(AppModule);
@@ -17,11 +18,12 @@ async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
     .setDescription(swagger.description)
     .setVersion(swagger.version)
     .addTag(swagger.musicTag)
+    .addTag(swagger.playlistTag)
     .build();
 
   // create swagger document
   const MusicDocument = SwaggerModule.createDocument(app, musicOptions, {
-    include: [MusicModule],
+    include: [MusicModule, PlaylistModule],
   });
 
   SwaggerModule.setup(swagger.path, app, MusicDocument);
