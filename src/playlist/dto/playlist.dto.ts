@@ -7,7 +7,7 @@ export class PlaylistDto {
   @ApiProperty({
     name: 'title',
     description: 'Title of the playlist',
-    example: 'Whole lotta love',
+    example: 'Playlist Example',
   })
   @IsString()
   @IsNotEmpty()

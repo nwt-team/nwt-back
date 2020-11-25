@@ -13,7 +13,7 @@ export class UpdateMusicDto {
   title?: string;
 
   @ApiProperty({
-    name: 'artists',
+    name: 'artist',
     description: 'Artist who made the music',
     example: 'Led Zeppelin',
   })
@@ -22,7 +22,7 @@ export class UpdateMusicDto {
   artist?: string;
 
   @ApiProperty({
-    name: 'genres',
+    name: 'genre',
     description: 'The genre of the music',
     example: 'Metal classique',
   })

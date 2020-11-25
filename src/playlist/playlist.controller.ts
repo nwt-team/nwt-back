@@ -34,12 +34,6 @@ export class PlaylistController {
   /**
    * handler to answer GET /playlist route
    */
-  @ApiParam({
-    name: 'id',
-    description: 'Unique identifier of the person in the database',
-    type: String,
-    allowEmptyValue: false,
-  })
   @ApiOkResponse({ description: 'Returns a list of playlist', type: PlaylistEntity })
   @ApiNoContentResponse({ description: 'No playlists  exists in database' })
   @Get()

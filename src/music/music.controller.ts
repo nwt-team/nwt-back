@@ -53,6 +53,12 @@ export class MusicController {
     return this._musicService.findAll();
   }
 
+  @ApiParam({
+    name: 'album',
+    description: 'Album name',
+    type: String,
+    allowEmptyValue: false,
+  })
   @ApiOkResponse({ description: 'Returns a list of musics', type: MusicEntity })
   @ApiNoContentResponse({ description: 'No music exists in database' })
   @Get('/byAlbum/:album')
