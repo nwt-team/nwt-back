@@ -7,8 +7,16 @@ import { SwaggerConfig } from './interfaces/swagger-config.interface';
 import { Logger } from '@nestjs/common';
 import { MusicModule } from './music/music.module';
 import { PlaylistModule } from './playlist/playlist.module';
+import * as fs from 'fs';
 
 async function bootstrap(config: ServerConfig, swagger: SwaggerConfig) {
+  // const httpsOptions = {
+  //   key: fs.readFileSync('./secrets/ssl/localhost.key'),
+  //   cert: fs.readFileSync('./secrets/ssl/localhost.crt'),
+  // };
+  // const app = await NestFactory.create(AppModule, {
+  //   httpsOptions,
+  // });
   const app = await NestFactory.create(AppModule);
   app.enableCors();
 

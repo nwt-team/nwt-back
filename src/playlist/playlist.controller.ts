@@ -20,7 +20,7 @@ export class PlaylistController {
    */
   @ApiParam({
     name: 'id',
-    description: 'Unique identifier of the person in the database',
+    description: 'Unique identifier of the playlist in the database',
     type: String,
     allowEmptyValue: false,
   })
@@ -50,7 +50,7 @@ export class PlaylistController {
 
   @ApiParam({
     name: 'id',
-    description: 'Unique identifier of the person in the database',
+    description: 'Unique identifier of the playlist in the database',
     type: String,
     allowEmptyValue: false,
   })
@@ -63,7 +63,7 @@ export class PlaylistController {
 
   @ApiParam({
     name: 'id',
-    description: 'Unique identifier of the person in the database',
+    description: 'Unique identifier of the playlist in the database',
     type: String,
     allowEmptyValue: false,
   })
