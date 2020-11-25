@@ -11,8 +11,8 @@ db.getCollection('musics').insertMany([
   },
   {
     title: 'She Wolf',
-    artists: 'David Guetta',
-    genres: 'Electro',
+    artist: 'David Guetta',
+    genre: 'Electro',
     year: 2011,
     type: 'Single',
     cover:
@@ -21,8 +21,8 @@ db.getCollection('musics').insertMany([
   },
   {
     title: 'Whole Lotta Love',
-    artists: 'Led Zeppelin',
-    genres: 'Metal classique',
+    artist: 'Led Zeppelin',
+    genre: 'Metal classique',
     year: 1969,
     type: 'Single',
     cover:
@@ -31,8 +31,8 @@ db.getCollection('musics').insertMany([
   },
   {
     title: 'Firefly',
-    artists: 'Jim Yosef',
-    genres: 'Dance/Électronique',
+    artist: 'Jim Yosef',
+    genre: 'Dance/Électronique',
     year: 2015,
     type: 'Single',
     cover:'https://i1.sndcdn.com/artworks-000140970007-bh6qvb-t500x500.jpg',
